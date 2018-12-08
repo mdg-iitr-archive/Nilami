@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Nilami</string>
+    <string name="your_auctions">Your Auctions</string>
+    <string name="interested_in">Interested In</string>
+    <string name="bidding_arena">Bidding Arena</string>
+    <string name="need_help">Need Help?</string>
+    <string name="notification">Notifications</string>
+</resources>
