@@ -12,7 +12,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
 {
-
+    //comment to commit change
     private DrawerLayout mDrawerLayout;
 
     @Override
@@ -81,4 +81,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 }
+
+
 

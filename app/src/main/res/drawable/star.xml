@@ -4,3 +4,4 @@
     <item android:state_checked="true" android:drawable="@drawable/star_fill" />
     <item android:state_checked="false" android:drawable="@drawable/star_border" />
 </selector>
+
