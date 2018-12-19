@@ -13,7 +13,7 @@ import android.widget.ImageView;
 
 import java.io.IOException;
 
-public class userprofile extends Activity {
+public class UserProfile extends Activity {
 
 
     private static final int CHOOSE_IMAGE = 101;

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".signup">
+    tools:context=".Signup">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                 android:layout_margin="7dp"
                 android:background="@drawable/rounded_button_transparent"
                 android:clickable="true"
-                android:onClick="Signup"
+                android:onClick="signup"
                 android:text="Sign Up"
                 android:textAllCaps="false"
                 android:textColor="@color/colorAccent" />

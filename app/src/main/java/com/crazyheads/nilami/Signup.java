@@ -14,19 +14,19 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
-public class login extends Activity {
+public class Signup extends Activity {
 
     //declaring variables
     EditText editTextEmail, editTextPassword;
     ProgressBar progressbar;
     private FirebaseAuth mAuth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_signup);
 
         //intializing values
         mAuth = FirebaseAuth.getInstance();
@@ -35,17 +35,10 @@ public class login extends Activity {
         progressbar=(ProgressBar)findViewById(R.id.progressbar);
     }
 
-    public void onclickOpenSignup(View view) {
-        startActivity(new Intent(this,signup.class));
-    }
 
-    public void loginbutton(View view) {
-        userLogin();
-    }
-
-    //login method
-    private void userLogin() {
-
+    //to register a new user
+    private void RegisterUser()
+    {
         String email=editTextEmail.getText().toString().trim();
         String password=editTextPassword.getText().toString();
 
@@ -87,26 +80,47 @@ public class login extends Activity {
 
         progressbar.setVisibility(View.VISIBLE);
 
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        //creating user with inbuilt method
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+            public void onComplete(@NonNull Task<AuthResult> task)
+            {
                 progressbar.setVisibility(View.GONE);
                 if(task.isSuccessful())
                 {
-                    Intent intent=new Intent(login.this,MainActivity.class);
 
-                    //to clear stack
+                    Intent intent=new Intent(Signup.this,MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
                 else{
+                    if(task.getException() instanceof FirebaseAuthUserCollisionException)
+                    {
+                        Toast.makeText(getApplicationContext(), "This Email is already registered!", Toast.LENGTH_SHORT).show();
+                    }
 
+                    else
+                    {
                         Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-
+                    }
                 }
 
+
+
             }
-        });
+                }
+        );
+
+    }
+
+
+
+    public void onclickOpenLogin(View view) {
+        startActivity(new Intent(this,Login.class));
+    }
+
+    public void signup(View view) {
+        RegisterUser();
 
     }
 }
