@@ -62,6 +62,8 @@
                 android:layout_gravity="center"
                 android:layout_margin="7dp"
                 android:background="@drawable/rounded_button_transparent"
+                android:clickable="true"
+                android:onClick="Signup"
                 android:text="Sign Up"
                 android:textAllCaps="false"
                 android:textColor="@color/colorAccent" />
@@ -70,6 +72,8 @@
                 android:id="@+id/textViewLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="onclickOpenLogin"
                 android:padding="15dp"
                 android:text="Already have an account? Login"
                 android:textAlignment="center"
