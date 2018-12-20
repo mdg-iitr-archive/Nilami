@@ -36,11 +36,24 @@ public class Login extends Activity {
     }
 
     public void onclickOpenSignup(View view) {
+        finish();
         startActivity(new Intent(this,Signup.class));
     }
 
     public void loginbutton(View view) {
         userLogin();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(mAuth.getCurrentUser()!=null)
+        {
+            finish();
+            Intent intent=new Intent(Login.this,MainActivity.class);
+            startActivity(intent);
+        }
     }
 
     //Login method
@@ -93,6 +106,7 @@ public class Login extends Activity {
                 progressbar.setVisibility(View.GONE);
                 if(task.isSuccessful())
                 {
+                    finish();
                     Intent intent=new Intent(Login.this,MainActivity.class);
 
                     //to clear stack

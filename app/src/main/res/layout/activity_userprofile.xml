@@ -55,6 +55,7 @@ tools:context=".UserProfile">
     android:paddingLeft="55dp"
     android:paddingRight="55dp"
     android:text="Save"
+    android:onClick="saveUserInfo"
     android:textAllCaps="false" />
 
 

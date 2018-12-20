@@ -88,8 +88,8 @@ public class Signup extends Activity {
                 progressbar.setVisibility(View.GONE);
                 if(task.isSuccessful())
                 {
-
-                    Intent intent=new Intent(Signup.this,MainActivity.class);
+                    finish();
+                    Intent intent=new Intent(Signup.this,UserProfile.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
@@ -116,6 +116,8 @@ public class Signup extends Activity {
 
 
     public void onclickOpenLogin(View view) {
+
+        finish();
         startActivity(new Intent(this,Login.class));
     }
 

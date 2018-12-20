@@ -1,33 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+  >
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/your_auctions"
+            android:id="@+id/nav_all_auctions"
+            android:title="@string/all_auctions" />
+        <!--android:icon=""-->
+
+        <item
+            android:id="@+id/nav_your_auctions"
             android:title="@string/your_auctions" />
         <!--android:icon=""-->
         <item
-            android:id="@+id/interested_in"
+            android:id="@+id/nav_interested_in"
             android:title="@string/interested_in" />
         <!--android:icon=""-->
         <item
-            android:id="@+id/bidding_arena"
+            android:id="@+id/nav_bidding_arena"
             android:title="@string/bidding_arena" />
         <!--android:icon=""-->
         <item
-            android:id="@+id/help"
+            android:id="@+id/nav_help"
             android:title="@string/need_help" />
         <!--android:icon=""-->
         <item
-            android:id="@+id/notifications"
+            android:id="@+id/nav_notifications"
             android:title="@string/notification" />
         <!--android:icon=""-->
 
         <!--  <item
-            android:id="@+id/ongoing_auction"
+            android:id="@+id/nav_ongoing_auction"
             android:title="Ongoing Auction"
             android:icon="" />
        -->
 
     </group>
+
+
+       <item
+        android:id="@+id/nav_signout"
+        android:title="@string/sign_out"
+         />
 
 </menu>
