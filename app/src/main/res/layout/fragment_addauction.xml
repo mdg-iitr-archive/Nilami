@@ -41,7 +41,6 @@
         android:layout_margin="20dp"
         android:clickable="true"
         app:fabSize="normal"
-        android:onClick="addProduct"
         app:srcCompat="@drawable/ic_add" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

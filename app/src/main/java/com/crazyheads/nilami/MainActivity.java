@@ -17,8 +17,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
-        AllAuctionFragment.AllAuctionListner
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+
 {
     //declarations
     private DrawerLayout mDrawerLayout;
@@ -40,12 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setNavigationDrawer();
 
 
-        if(savedInstanceState==null)
-        {
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
-                    new NeedHelpFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_all_auctions);
-        }
+
     }
 
 
@@ -126,12 +121,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    @Override
-    public void requestForAddAuctionFragment() {
-
-        replaceFragment(new AddAuctionFragment());
-
-    }
 
     private void replaceFragment(Fragment newFragment) {
         // Create new transaction
