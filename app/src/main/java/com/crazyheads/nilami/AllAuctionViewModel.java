@@ -1,36 +1,37 @@
 package com.crazyheads.nilami;
 
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.Transaction;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
-import java.util.List;
+import java.util.ArrayList;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
 public class AllAuctionViewModel extends ViewModel {
-    private static final DocumentReference products =
-            FirebaseFirestore.getInstance().collection("products").document();
+    private final DatabaseReference productRef = FirebaseDatabase.getInstance().getReference().child("products");
+    private FirebaseQueryLiveData liveData = new FirebaseQueryLiveData(productRef);
 
+    private LiveData<ArrayList<AuctionProduct>> auctionProductListLiveData = Transformations.map(liveData,new Deserializer());
 
-    private final FirebaseQueryLiveData liveData = new FirebaseQueryLiveData(products);
+    private class Deserializer implements Function<DataSnapshot, ArrayList<AuctionProduct>>{
 
-  //  private final LiveData<AuctionProduct> AuctionProductLiveData =
-         //   Transformations.map(liveData,DocumentSnapshot);
+        @Override
+        public ArrayList<AuctionProduct> apply(DataSnapshot input) {
+            ArrayList<AuctionProduct> list = new ArrayList<>();
+            for (DataSnapshot snapshot : input.getChildren()){
+                list.add(input.getValue(AuctionProduct.class));
+            }
 
+            return list;
+        }
+    }
 
-
-    @NonNull
-    public LiveData<DocumentSnapshot> getQuerySnapshotLiveData() {
-        return liveData;
+    public LiveData<ArrayList<AuctionProduct>> getAuctionProductListLiveData(){
+        return auctionProductListLiveData;
     }
 }

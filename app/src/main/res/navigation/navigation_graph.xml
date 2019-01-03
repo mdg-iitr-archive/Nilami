@@ -9,7 +9,7 @@
         android:id="@+id/allAuctionFragment"
         android:name="com.crazyheads.nilami.AllAuctionFragment"
         android:label="fragment_auction_recyclerviwe"
-        tools:layout="@layout/fragment_auction_recyclerviwe" >
+        tools:layout="@layout/fragment_auction_recyclerview" >
         <action
             android:id="@+id/action_allAuction_to_addAuction"
             app:destination="@id/addAuctionFragment" />

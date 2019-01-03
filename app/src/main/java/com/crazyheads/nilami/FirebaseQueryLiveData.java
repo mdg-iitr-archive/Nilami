@@ -1,80 +1,49 @@
 package com.crazyheads.nilami;
 
 import android.util.Log;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
 
-
-import javax.annotation.Nullable;
-
-import androidx.annotation.NonNull;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import androidx.lifecycle.LiveData;
 
-public class FirebaseQueryLiveData extends LiveData<DocumentSnapshot> {
+public class FirebaseQueryLiveData extends LiveData<DataSnapshot> {
+    private static final String LOG_TAG = "FirebaseQueryLiveData";
 
-    private final String TAG = "FirebaseQueryLiveData";
- //   private FirebaseFirestore db;
-    private final MyEventListner listener = new MyEventListner();
-    private DocumentReference documentReference;
+    private final Query query;
+    private final MyValueEventListener listener = new MyValueEventListener();
 
-
-
-    public FirebaseQueryLiveData(DocumentReference ref) {
-        this.documentReference = ref;
+    public FirebaseQueryLiveData(Query query) {
+        this.query = query;
     }
 
+    public FirebaseQueryLiveData(DatabaseReference ref) {
+        this.query = ref;
+    }
 
     @Override
     protected void onActive() {
-        Log.d(TAG, "onActive");
-        //add listner
-        documentReference.addSnapshotListener(listener);
-
-
+        Log.d(LOG_TAG, "onActive");
+        query.addValueEventListener(listener);
     }
 
     @Override
     protected void onInactive() {
-        Log.d(TAG, "onInactive");
+        Log.d(LOG_TAG, "onInactive");
+        query.removeEventListener(listener);
     }
 
-    private class MyOnSuccessListener implements OnSuccessListener<DocumentSnapshot>{
+    private class MyValueEventListener implements ValueEventListener {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            setValue(dataSnapshot);
+        }
 
         @Override
-        public void onSuccess(DocumentSnapshot documentSnapshot) {
-            setValue(documentSnapshot);
+        public void onCancelled(DatabaseError databaseError) {
+            Log.e(LOG_TAG, "Can't listen to query " + query, databaseError.toException());
         }
     }
-
-
-
-    private class MyEventListner implements EventListener<DocumentSnapshot>
-    {
-
-
-        @Override
-        public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-            if (e != null) {
-                Log.w(TAG, "Listen failed.", e);
-                return;
-            }
-
-            if (documentSnapshot != null && documentSnapshot.exists()) {
-                setValue(documentSnapshot);
-
-            } else {
-                Log.d(TAG, "Current data: null");
-            }
-        }
-    }
-
-
-
 }

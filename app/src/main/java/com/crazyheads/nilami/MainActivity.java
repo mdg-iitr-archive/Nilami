@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;

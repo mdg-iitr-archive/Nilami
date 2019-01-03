@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class AdapterAllAuction extends RecyclerView.Adapter<AdapterAllAuction.ViewHolder> {
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -23,7 +22,6 @@ public class AdapterAllAuction extends RecyclerView.Adapter<AdapterAllAuction.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
     }
 
     @Override

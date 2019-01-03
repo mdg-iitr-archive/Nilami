@@ -1,7 +1,10 @@
 package com.crazyheads.nilami;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.util.Calendar;
 
+@IgnoreExtraProperties
 public class AuctionProduct {
 
     private String productName;
@@ -14,7 +17,7 @@ public class AuctionProduct {
     private int currentBid;
     private Calendar calendar;
 
-    public AuctionProduct(String productName, String productDesc, int minBid, String ownwer, String ownerEmail, String highestBidder, String highestBidderEmail, int currentBid, Calendar calendar) {
+    public AuctionProduct(String productName, String productDesc, int minBid, String ownwer, String ownerEmail, String highestBidder, String highestBidderEmail, int currentBid) {
         this.productName = productName;
         this.productDesc = productDesc;
         this.minBid = minBid;
@@ -23,9 +26,9 @@ public class AuctionProduct {
         this.highestBidder = highestBidder;
         this.highestBidderEmail = highestBidderEmail;
         this.currentBid = currentBid;
-        this.calendar = calendar;
-        this.calendar.add(Calendar.DATE,7);
     }
+
+    public AuctionProduct(){}
 
     public void UpdateBid(String highestBidder, String highestBidderEmail, int currentBid){
         this.highestBidder = highestBidder;
@@ -33,9 +36,6 @@ public class AuctionProduct {
         this.currentBid = currentBid;
     }
 
-    public Calendar getCalendar() {
-        return calendar;
-    }
 
     public String getProductName() {
         return productName;
