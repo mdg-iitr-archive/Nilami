@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -14,25 +14,25 @@
 
             <TextView
                 android:id="@+id/product_name"
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="10dp"
                 android:text="#productname"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/min_price"
                 android:layout_width="wrap_content"
-                android:textStyle="bold"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/product_name"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="6dp"
                 android:text="#minprice"
-                android:layout_below="@id/product_name"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/auction_date"
@@ -41,8 +41,8 @@
                 android:layout_below="@id/min_price"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="10dp"
-                android:textSize="15dp"
                 android:text="#auction date"
+                android:textSize="15dp"
 
                 />
 
@@ -61,6 +61,6 @@
 
         </RelativeLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
